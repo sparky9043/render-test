@@ -4,8 +4,6 @@ const app = express();
 const cors = require("cors");
 const Note = require("./models/note");
 
-//mongodb+srv://sparky9043:<db_password>@cluster0.nveh9zx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
 app.use(express.static("dist"));
 app.use(express.json());
 app.use(cors());
@@ -19,32 +17,6 @@ const requestLogger = (request, response, next) => {
 };
 
 app.use(requestLogger);
-
-// let notes = [
-//   {
-//     id: "1",
-//     content: "HTML is easy",
-//     important: true,
-//   },
-//   {
-//     id: "2",
-//     content: "Browser can execute only JavaScript",
-//     important: false,
-//   },
-//   {
-//     id: "3",
-//     content: "GET and POST are the most important methods of HTTP protocol",
-//     important: true,
-//   },
-// ];
-
-/*
-
-app.get("/", (request, response) => {
-  response.send("<h1>Hello Tuna</h1>");
-});
-
-*/
 
 app.get("/api/notes", (request, response) => {
   Note.find({}).then((notes) => {
